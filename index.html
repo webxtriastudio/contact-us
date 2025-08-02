@@ -8,13 +8,33 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
   body{background:#0a0a0a;color:#f5f5f5;overflow-x:hidden;}
 
-  header{
-    position:fixed;top:0;width:100%;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:15px 60px;background:rgba(10,10,10,0.85);
-    backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.08);
-    z-index:100;
+  header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 5%;  /* ✅ Use percentage instead of fixed px */
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 100;
+  box-sizing: border-box; /* ✅ Ensure padding doesn’t break width */
+}
+
+/* ✅ Media query for small devices */
+@media (max-width: 768px) {
+  header {
+    padding: 12px 20px; /* Less padding on mobile */
   }
+  .title {
+    font-size: 20px; /* Adjust title size */
+  }
+  .logo {
+    height: 40px; /* Slightly smaller logo */
+  }
+}
   .logo{height:50px;}
   .title{font-size:26px;font-weight:700;color:#ffb347;letter-spacing:1px;}
   .burger{display:flex;width:30px;height:22px;flex-direction:column;justify-content:space-between;cursor:pointer;}
