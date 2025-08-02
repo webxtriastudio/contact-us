@@ -7,51 +7,98 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
   body {
-  margin: 0;
-  padding: 0;
-  background: #0a0a0a;
-  color: #f5f5f5;
-  overflow-x: hidden; /* ✅ No horizontal scroll */
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #f5f5f5;
+    overflow-x: hidden; /* ✅ No horizontal scroll */
   }
-header {
-  position: fixed;
-  top: 0;
-  left: 0;   /* ✅ Ensure it starts at 0 */
-  right: 0;  /* ✅ Ensures it extends full width */
-  width: 100vw; /* ✅ Forces full viewport width */
-  max-width: 100%; /* ✅ Prevents any overflow */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 5%;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  z-index: 100;
-  box-sizing: border-box;
-}
 
-/* ✅ Responsive adjustments */
-@media (max-width: 768px) {
+  /* Header */
   header {
-    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 5%;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 100;
+    box-sizing: border-box;
   }
-  .title {
-    font-size: 20px;
-  }
-  .logo {
-    height: 40px;
-  }
-
   .logo{height:50px;}
   .title{font-size:26px;font-weight:700;color:#ffb347;letter-spacing:1px;}
-  .burger{display:flex;width:30px;height:22px;flex-direction:column;justify-content:space-between;cursor:pointer;}
-  .burger span{height:3px;background:#f5f5f5;border-radius:2px;transition:0.3s;}
-  nav{display:none;flex-direction:column;position:fixed;top:70px;right:-250px;width:200px;background:#111;padding:20px;border-left:3px solid #ffb347;box-shadow:-4px 0 15px rgba(0,0,0,0.3);gap:0;transition:0.4s;}
-  nav.show{right:0;}
-  nav a{color:#fff;text-decoration:none;font-weight:500;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
-  nav a:hover{color:#ffb347;}
 
+  /* ✅ Burger Menu (fixed like other pages) */
+  .burger {
+    display: none;
+    width: 30px;
+    height: 22px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .burger span { height: 3px; background: #f5f5f5; border-radius: 2px; transition: 0.3s; }
+
+  /* Desktop Nav */
+  nav {
+    display: flex;
+    gap: 25px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #ffb347;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+  }
+  nav a:hover::after { width: 100%; }
+  nav a:hover { color: #ffb347; }
+
+  /* Mobile Navigation */
+  @media (max-width: 989px) {
+    .burger { display: flex; }
+    nav {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 70px;
+      right: -250px;
+      width: 200px;
+      background: #111;
+      padding: 20px;
+      border-left: 3px solid #ffb347;
+      box-shadow: -4px 0 15px rgba(0,0,0,0.3);
+      gap: 0;
+      transition: 0.4s;
+    }
+    nav.show { right: 0; }
+    nav a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 12px 20px; }
+    .title { font-size: 20px; }
+    .logo { height: 40px; }
+  }
+
+  /* Hero Section */
   .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 20px;text-align:center;}
   .spotlight{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,71,0.2),transparent 70%);filter:blur(120px);animation:moveSpot 12s infinite alternate ease-in-out;}
   .spotlight:nth-child(1){top:15%;left:10%;}
@@ -66,22 +113,16 @@ header {
   button:hover{background:#ffc766;}
   .status{text-align:center;margin-top:10px;font-size:1em;}
 
-    .social-links{
-    display:flex;justify-content:center;gap:25px;margin-top:20px;
-  }
-  .social-links a svg{
-    width:28px;height:28px;fill:#ffb347;transition:0.3s;
-  }
+  .social-links{display:flex;justify-content:center;gap:25px;margin-top:20px;}
+  .social-links a svg{width:28px;height:28px;fill:#ffb347;transition:0.3s;}
   .social-links a:hover svg{fill:#ffc766;transform:scale(1.15);}
 
   /* Footer */
-  footer{
-    text-align:center;padding:15px;margin-top:40px;
-    border-top:1px solid rgba(255,255,255,0.1);opacity:0.8;font-size:0.9em;
-  }
+  footer{text-align:center;padding:15px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.1);opacity:0.8;font-size:0.9em;}
 </style>
 </head>
 <body>
+
 <header>
   <img src="https://raw.githubusercontent.com/webxtriastudio/webxtriastudio/refs/heads/main/logo.png" class="logo">
   <div class="title">WebXtria Studio</div>
@@ -118,8 +159,9 @@ header {
       </a>
     </div>
   </form>
-
 </div>
+
+<footer>© 2025 WebXtria Studio. All Rights Reserved.</footer>
 
 <script>
   const burger=document.getElementById('burger');
@@ -143,4 +185,4 @@ header {
   });
 </script>
 </body>
-</html>    
+</html>
